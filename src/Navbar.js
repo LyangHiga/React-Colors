@@ -32,7 +32,7 @@ class Navbar extends Component{
                     <a href='#'>reactcolorpicker</a>
                 </div>
                 <div className='slide-container'>
-                    <spna>Level: {level}</spna>
+                    <span>Level: {level}</span>
                     <div className='slider'>
                         <Slider 
                             defaultValue={level} 
