@@ -2,34 +2,48 @@ import React from 'react';
 import { withStyles } from '@material-ui/core/styles';
 
 const styles = {
-    main: {
-        backgroundColor: 'purple'
-    },
-    sec:{
-        backgroundColor:'pink',
-        '& p':{
-            backgroundColor: 'blue',
-            color: 'white'
+    root:{
+        backgroundColor: 'white',
+        borderRadius: '5px',
+        padding: '0.5rem',
+        position: 'relative',
+        overflow: 'hidden',
+        '&:hover':{
+            cursor:'pointer'
         },
-        '& h1':{
-            backgroundColor:'orange'
-        }
+        border: '1px solid black'
+    },
+    colors:{
+        backgroundColor: 'gray'
+    },
+    title:{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        margin: '0',
+        color: 'black',
+        paddingTop: '0.5rem',
+        fontSize: '1rem',
+        position: 'relative'
+    },
+    emoji:{
+        marginLeft: '0.5rem',
+        fontSize: '1.5rem'
     }
-
 };
 
 function MiniPalette(props){
-    const {classes} = props;
+    const {classes, paletteName, emoji} = props;
     return(
-        <div>
-            <h1 className={classes.main}>Mini Palette</h1>
-            <section className={classes.sec}>
-                <h1>HAHAHAHH</h1>
-                <p>JAJAJAJJA</p>
-            </section>
-            
+        <div className={classes.root}>
+            <div className={classes.colors}>
+
+            </div>
+            <h5 className={classes.title}>
+                {paletteName} <spam className={classes.emoji}>{emoji}</spam>
+            </h5>          
         </div>
     )
 }
 
-export default withStyles(styles) (MiniPalette);
+export default withStyles(styles)(MiniPalette);
