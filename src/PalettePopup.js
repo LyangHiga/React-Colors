@@ -12,7 +12,7 @@ class PalettePopup extends Component {
     constructor(props){
         super(props);
         this.state = {
-            open: false,
+            open: true,
             newPaletteName: ""
         };
         this.handleChange = this.handleChange.bind(this);
@@ -41,39 +41,32 @@ class PalettePopup extends Component {
       render(){
         const {newPaletteName} = this.state;
         return (
-            <div>
-              <Button variant="outlined" color="primary" onClick={this.handleClickOpen}>
-                Open form dialog
-              </Button>
               <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
-                <DialogTitle id="form-dialog-title">Subscribe</DialogTitle>
-                <DialogContent>
-                    <DialogContentText>
-                        To subscribe to this website, please enter your email address here. We will send updates
-                        occasionally.
-                    </DialogContentText>
-                    <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
-                        <TextValidator 
-                            placeholder='Palette Name' 
-                            value={newPaletteName} 
-                            onChange={this.handleChange} 
-                            name='newPaletteName'
-                            validators={['required','isPaletteNameUnique']}
-                            errorMessages={['Enter Palette Name','Palette Name already taken']}
-                        />
-                        <Button variant='contained' color='primary' type='submit'>Save Palette</Button>
-                    </ValidatorForm>
-                </DialogContent>
-                <DialogActions>
-                  <Button onClick={this.handleClose} color="primary">
-                    Cancel
-                  </Button>
-                  <Button onClick={this.handleClose} color="primary">
-                    Subscribe
-                  </Button>
-                </DialogActions>
+                <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
+                <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+                    <DialogContent>
+                        <DialogContentText>
+                            Enter a name for this new Palette. Please make sure it's unique!
+                        </DialogContentText>
+                            <TextValidator 
+                                placeholder= 'Palette Name' 
+                                value= {newPaletteName} 
+                                onChange= {this.handleChange} 
+                                fullWidth
+                                margin= 'normal'
+                                name= 'newPaletteName'
+                                validators= {['required','isPaletteNameUnique']}
+                                errorMessages= {['Enter Palette Name','Palette Name already taken']}
+                            />
+                    </DialogContent>
+                    <DialogActions>
+                    <Button onClick={this.handleClose} color="primary">
+                        Cancel
+                    </Button>
+                    <Button variant='contained' color='primary' type='submit'>Save Palette</Button>
+                    </DialogActions>
+                </ValidatorForm>
               </Dialog>
-            </div>
           );
       }
 }
