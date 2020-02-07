@@ -52,7 +52,7 @@ class App extends Component {
               palettes={this.state.palettes}
               savePalette={this.savePalette}
               {...routeProps}/>}
-            />
+        />
         <Route 
           exact 
           path='/' 
