@@ -1,12 +1,13 @@
 import React, { Component } from 'react';
 import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
 import DialogContent from '@material-ui/core/DialogContent';
 import DialogContentText from '@material-ui/core/DialogContentText';
 import DialogTitle from '@material-ui/core/DialogTitle';
 import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
+import {Picker} from 'emoji-mart';
+import 'emoji-mart/css/emoji-mart.css'
 
 class PalettePopup extends Component {
     constructor(props){
@@ -34,20 +35,18 @@ class PalettePopup extends Component {
         this.setState({ open: true });
       };
     
-      handleClose = () => {
-        this.setState({ open: false });
-      };
-
-      render(){
+    render(){
         const {newPaletteName} = this.state;
+        const {hideForm, handleSubmit} = this.props
         return (
-              <Dialog open={this.state.open} onClose={this.handleClose} aria-labelledby="form-dialog-title">
+            <Dialog open={this.state.open} onClose={hideForm} aria-labelledby="form-dialog-title">
                 <DialogTitle id="form-dialog-title">Choose a Palette Name</DialogTitle>
-                <ValidatorForm onSubmit={() => this.props.handleSubmit(newPaletteName)}>
+                <ValidatorForm onSubmit={() => handleSubmit(newPaletteName)}>
                     <DialogContent>
                         <DialogContentText>
                             Enter a name for this new Palette. Please make sure it's unique!
                         </DialogContentText>
+                            <Picker/>
                             <TextValidator 
                                 placeholder= 'Palette Name' 
                                 value= {newPaletteName} 
@@ -60,15 +59,15 @@ class PalettePopup extends Component {
                             />
                     </DialogContent>
                     <DialogActions>
-                    <Button onClick={this.handleClose} color="primary">
-                        Cancel
-                    </Button>
-                    <Button variant='contained' color='primary' type='submit'>Save Palette</Button>
+                        <Button onClick={hideForm} color="primary">
+                            Cancel
+                        </Button>
+                        <Button variant='contained' color='primary' type='submit'>Save Palette</Button>
                     </DialogActions>
                 </ValidatorForm>
               </Dialog>
-          );
-      }
+        );
+    }
 }
 
 export default PalettePopup;
