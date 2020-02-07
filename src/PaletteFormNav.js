@@ -8,7 +8,6 @@ import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
 import Button from "@material-ui/core/Button";
-import {ValidatorForm, TextValidator} from 'react-material-ui-form-validator';
 import {Link} from 'react-router-dom';
 import PalettePopup from './PalettePopup';
 
@@ -60,7 +59,7 @@ const styles = theme => ({
 class PaletteFormNav extends Component {
     constructor(props){
         super(props);
-        this.state= {newPaletteName:'', formShowing: false};
+        this.state= {formShowing: false};
         this.handleChange = this.handleChange.bind(this);
         this.showForm = this.showForm.bind(this);
         this.hideForm = this.hideForm.bind(this);
@@ -80,7 +79,6 @@ class PaletteFormNav extends Component {
     
     render() {
         const {classes, open, palettes, handleSubmit} = this.props;
-        const {newPaletteName} = this.state;
         return (
             <div className={classes.root}>
                 <CssBaseline />
