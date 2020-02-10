@@ -142,6 +142,7 @@ class NewPaletteForm extends Component {
             removeDraggableColorBox={this.removeDraggableColorBox}
             axis='xy'  
             onSortEnd = {this.onSortEnd}
+            distance={20}
           />
         </main>
       </div>
