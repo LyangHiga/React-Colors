@@ -47,6 +47,7 @@ class PalettePopup extends Component {
             emoji: emoji.native
         }
         this.props.handleSubmit(newPalette);
+        this.setState({open:''})
     }
     
     render(){
