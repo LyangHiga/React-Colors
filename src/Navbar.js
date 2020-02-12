@@ -28,6 +28,7 @@ class Navbar extends Component{
     }
     render(){
         const {level, changeLevel, showLevel, classes} = this.props;
+        const {format, open} = this.state;
         return(
             <header className={classes.Navbar}>
                 <div className={classes.logo}>
@@ -46,7 +47,7 @@ class Navbar extends Component{
                     </div>
                 </div>}
                 <div className={classes.selectContainer}>
-                    <Select value={this.state.format} onChange={this.handleFormatChange}>
+                    <Select value={format} onChange={this.handleFormatChange}>
                         <MenuItem value='hex'>HEX - #ffffff</MenuItem>
                         <MenuItem value='rgb'>RGB - rgb(255,255,255)</MenuItem>
                         <MenuItem value='rgba'>RGBA - rgb(255,255,255,1.0)</MenuItem>
@@ -54,7 +55,7 @@ class Navbar extends Component{
                 </div>
                 <Snackbar 
                     anchorOrigin={{vertical:'bottom',horizontal:'left'}} 
-                    open={this.state.open}
+                    open={open}
                     autoHideDuration={3000}    
                     message={<spam id='message-id'>Format Changed to {this.state.format.toUpperCase()}!</spam>}
                     ContentProps={{
