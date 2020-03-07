@@ -6,9 +6,9 @@ import styles from './styles/MiniPalettesStyles';
 function MiniPalette(props){
     const removePalette = (e) => {
         e.stopPropagation();
-        props.openDialog();
+        props.openDialog(props.id);
     }
-    const handleClick = () => props.goToPalette(this.props.id);
+    const handleClick = () => props.goToPalette(props.id);
     const {classes, paletteName, emoji, colors} = props;
 
     const miniColorBoxes = colors.map(color =>(
