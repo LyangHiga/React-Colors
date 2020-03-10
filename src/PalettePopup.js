@@ -20,7 +20,7 @@ function PalettePopup(props){
                 ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
             )
         );
-    });
+    },[newPaletteName, props.palettes]);
 
     const showEmojiPicker = () => setOpen('emoji');
 

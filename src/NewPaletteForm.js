@@ -35,9 +35,7 @@ function NewPaletteForm(props){
     }
 
     const onSortEnd = ({oldIndex, newIndex}) => {
-        setColors(({colors}) => ({
-            colors: arrayMove(colors, oldIndex, newIndex),
-          }));
+        setColors(arrayMove(colors, oldIndex, newIndex));
     };
 
     const {maxColors, classes, palettes } = props;
