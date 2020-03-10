@@ -1,4 +1,4 @@
-import React, { Component } from 'react'
+import React from 'react'
 import classNames from "classnames";
 import { withStyles } from "@material-ui/core/styles";
 import CssBaseline from "@material-ui/core/CssBaseline";
@@ -11,31 +11,11 @@ import Button from "@material-ui/core/Button";
 import {Link} from 'react-router-dom';
 import PalettePopup from './PalettePopup';
 import styles from './styles/PaletteFormNavStyles'
+import useToggleState from './hooks/useToggleState';
 
-class PaletteFormNav extends Component {
-    constructor(props){
-        super(props);
-        this.state= {formShowing: false};
-        this.handleChange = this.handleChange.bind(this);
-        this.showForm = this.showForm.bind(this);
-        this.hideForm = this.hideForm.bind(this);
-    }
-
-    handleChange(evt){
-        this.setState({[evt.target.name]: evt.target.value})
-      };
-
-      showForm(){
-          this.setState({formShowing: true});
-      };
-
-      hideForm(){
-          this.setState({formShowing: false});
-      };
-    
-    render() {
-        const {classes, open, palettes, handleSubmit, handleDrawerOpen} = this.props;
-        const {formShowing} = this.state;
+function PaletteFormNav(props){
+        const [formShowing, toggleForm] = useToggleState(false);
+        const {classes, open, palettes, handleSubmit, handleDrawerOpen} = props;
         return (
             <div className={classes.root}>
                 <CssBaseline />
@@ -68,7 +48,7 @@ class PaletteFormNav extends Component {
                         <Button 
                             variant="contained" 
                             color="primary" 
-                            onClick={this.showForm}
+                            onClick={toggleForm}
                         >
                             Save
                         </Button>
@@ -79,12 +59,11 @@ class PaletteFormNav extends Component {
                         palettes={palettes} 
                         handleSubmit={handleSubmit} 
                         className={classes.button}
-                        hideForm={this.hideForm}
+                        hideForm={toggleForm}
                     />
                 }
             </div>
-        )
-    }
-}
+        );
+};
 
 export default withStyles(styles, { withTheme: true })(PaletteFormNav);
