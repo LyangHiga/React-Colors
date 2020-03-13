@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { withStyles } from '@material-ui/core/styles';
 import ColorBox from './ColorBox';
 import Navbar from './Navbar';
 import PaletteFooter from './PaletteFooter';
 import styles from './styles/PaletteStyles';
+import { PalettesContext } from './context/palette.context';
+import { generatePalette } from './colorHelpers';
 
 function SingleColorPalette(props) {
   const [format, setFormat] = useState('hex');
@@ -18,9 +20,11 @@ function SingleColorPalette(props) {
     }
     return shades.slice(1);
   };
-
-  const _shades = gatherShade(props.palette, props.colorId);
-  const { paletteName, emoji, id } = props.palette;
+  const { findPalette } = useContext(PalettesContext);
+  const palette = generatePalette(findPalette(props.match.params.paletteId));
+  const colorId = props.match.params.colorId;
+  const _shades = gatherShade(palette, colorId);
+  const { paletteName, emoji, id } = palette;
   const { classes } = props;
   const colorBoxes = _shades.map(color => (
     <ColorBox

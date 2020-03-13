@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import classNames from 'classnames';
 import { withStyles } from '@material-ui/core/styles';
 import Drawer from '@material-ui/core/Drawer';
@@ -14,10 +14,12 @@ import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
 import seedColors from './seedColors';
 import useToggleState from './hooks/useToggleState';
+import { PalettesContext } from './context/palette.context';
 
 function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggleState(true);
   const [colors, setColors] = useState(seedColors[0].colors);
+  const { palettes, savePalette } = useContext(PalettesContext);
 
   const addNewColor = newColor => setColors([...colors, newColor]);
 
@@ -30,7 +32,7 @@ function NewPaletteForm(props) {
   const handleSubmit = newPalette => {
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
     newPalette.colors = colors;
-    props.savePalette(newPalette);
+    savePalette(newPalette);
     props.history.push('/');
   };
 
@@ -38,7 +40,7 @@ function NewPaletteForm(props) {
     setColors(arrayMove(colors, oldIndex, newIndex));
   };
 
-  const { maxColors, classes, palettes } = props;
+  const { maxColors, classes } = props;
   const paletteIsFull = colors.length >= maxColors;
 
   return (

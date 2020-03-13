@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import { withStyles } from '@material-ui/core/styles';
@@ -15,10 +15,12 @@ import red from '@material-ui/core/colors/red';
 import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
 import useToggleState from './hooks/useToggleState';
+import { PalettesContext } from './context/palette.context';
 
 function PaletteList(props) {
   const [openDeleteDialog, toggleDialog] = useToggleState(false);
   const [deletingId, setDeletingId] = useState();
+  const { deletePalette, palettes } = useContext(PalettesContext);
 
   const openDialog = id => {
     toggleDialog();
@@ -28,13 +30,13 @@ function PaletteList(props) {
   const closeDialog = () => toggleDialog();
 
   const handleDelete = () => {
-    props.deletePalette(deletingId);
+    deletePalette(deletingId);
     closeDialog();
   };
 
   const goToPalette = id => props.history.push(`/palette/${id}`);
 
-  const { palettes, classes } = props;
+  const { classes } = props;
 
   return (
     <div className={classes.root}>
