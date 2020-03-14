@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import Button from '@material-ui/core/Button';
 import Dialog from '@material-ui/core/Dialog';
 import DialogActions from '@material-ui/core/DialogActions';
@@ -9,18 +9,20 @@ import { ValidatorForm, TextValidator } from 'react-material-ui-form-validator';
 import { Picker } from 'emoji-mart';
 import 'emoji-mart/css/emoji-mart.css';
 import useInputState from './hooks/useInputState';
+import { PalettesContext } from './context/palette.context';
 
 function PalettePopup(props) {
   const [open, setOpen] = useState('form');
   const [newPaletteName, handleChange] = useInputState();
+  const { palettes } = useContext(PalettesContext);
 
   useEffect(() => {
     ValidatorForm.addValidationRule('isPaletteNameUnique', value =>
-      props.palettes.every(
+      palettes.every(
         ({ paletteName }) => paletteName.toLowerCase() !== value.toLowerCase()
       )
     );
-  }, [newPaletteName, props.palettes]);
+  }, [newPaletteName, palettes]);
 
   const showEmojiPicker = () => setOpen('emoji');
 

@@ -15,7 +15,7 @@ import useToggleState from './hooks/useToggleState';
 
 function PaletteFormNav(props) {
   const [formShowing, toggleForm] = useToggleState(false);
-  const { classes, open, palettes, handleSubmit, handleDrawerOpen } = props;
+  const { classes, open, handleSubmit, handleDrawerOpen } = props;
   return (
     <div className={classes.root}>
       <CssBaseline />
@@ -56,7 +56,6 @@ function PaletteFormNav(props) {
       </AppBar>
       {formShowing && (
         <PalettePopup
-          palettes={palettes}
           handleSubmit={handleSubmit}
           className={classes.button}
           hideForm={toggleForm}

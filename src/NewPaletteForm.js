@@ -19,7 +19,7 @@ import { PalettesContext } from './context/palette.context';
 function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggleState(true);
   const [colors, setColors] = useState(seedColors[0].colors);
-  const { palettes, savePalette } = useContext(PalettesContext);
+  const { savePalette } = useContext(PalettesContext);
 
   const addNewColor = newColor => setColors([...colors, newColor]);
 
@@ -47,7 +47,6 @@ function NewPaletteForm(props) {
     <div className={classes.root}>
       <PaletteFormNav
         open={open}
-        palettes={palettes}
         handleSubmit={handleSubmit}
         handleDrawerOpen={toggleOpen}
       />
