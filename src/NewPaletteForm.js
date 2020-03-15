@@ -19,7 +19,7 @@ import { DispatchContext } from './context/palette.context';
 function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggleState(true);
   const [colors, setColors] = useState(seedColors[0].colors);
-  const { dispatch } = useContext(DispatchContext);
+  const dispatch = useContext(DispatchContext);
 
   const addNewColor = newColor => setColors([...colors, newColor]);
 

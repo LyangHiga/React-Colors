@@ -21,7 +21,7 @@ function PaletteList(props) {
   const [openDeleteDialog, toggleDialog] = useToggleState(false);
   const [deletingId, setDeletingId] = useState();
   const { palettes } = useContext(PalettesContext);
-  const { dispatch } = useContext(DispatchContext);
+  const dispatch = useContext(DispatchContext);
 
   const openDialog = id => {
     toggleDialog();
