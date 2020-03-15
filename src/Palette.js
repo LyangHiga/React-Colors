@@ -14,6 +14,7 @@ function Palette(props) {
   const changeFormat = format => setFormat(format);
   const { findPalette } = useContext(PalettesContext);
   const palette = generatePalette(findPalette(props.match.params.id));
+
   const { classes } = props;
   const { colors, paletteName, emoji, id } = palette;
   const colorBoxes = colors[level].map(color => (
@@ -26,7 +27,6 @@ function Palette(props) {
       showingFullPalette
     />
   ));
-  console.log(colorBoxes);
   return (
     <div className={classes.Palette}>
       <Navbar

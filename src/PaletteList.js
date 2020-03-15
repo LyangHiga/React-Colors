@@ -20,7 +20,7 @@ import { PalettesContext } from './context/palette.context';
 function PaletteList(props) {
   const [openDeleteDialog, toggleDialog] = useToggleState(false);
   const [deletingId, setDeletingId] = useState();
-  const { deletePalette, palettes } = useContext(PalettesContext);
+  const { palettes, dispatch } = useContext(PalettesContext);
 
   const openDialog = id => {
     toggleDialog();
@@ -30,7 +30,7 @@ function PaletteList(props) {
   const closeDialog = () => toggleDialog();
 
   const handleDelete = () => {
-    deletePalette(deletingId);
+    dispatch({ type: 'DELETE', id: deletingId });
     closeDialog();
   };
 

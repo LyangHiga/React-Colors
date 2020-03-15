@@ -19,7 +19,7 @@ import { PalettesContext } from './context/palette.context';
 function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggleState(true);
   const [colors, setColors] = useState(seedColors[0].colors);
-  const { savePalette } = useContext(PalettesContext);
+  const { dispatch } = useContext(PalettesContext);
 
   const addNewColor = newColor => setColors([...colors, newColor]);
 
@@ -32,7 +32,7 @@ function NewPaletteForm(props) {
   const handleSubmit = newPalette => {
     newPalette.id = newPalette.paletteName.toLowerCase().replace(/ /g, '-');
     newPalette.colors = colors;
-    savePalette(newPalette);
+    dispatch({ type: 'SAVE', newPalette });
     props.history.push('/');
   };
 
