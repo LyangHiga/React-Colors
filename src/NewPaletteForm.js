@@ -14,12 +14,12 @@ import ColorPickerForm from './ColorPickerForm';
 import styles from './styles/NewPaletteFormStyles';
 import seedColors from './seedColors';
 import useToggleState from './hooks/useToggleState';
-import { PalettesContext } from './context/palette.context';
+import { DispatchContext } from './context/palette.context';
 
 function NewPaletteForm(props) {
   const [open, toggleOpen] = useToggleState(true);
   const [colors, setColors] = useState(seedColors[0].colors);
-  const { dispatch } = useContext(PalettesContext);
+  const { dispatch } = useContext(DispatchContext);
 
   const addNewColor = newColor => setColors([...colors, newColor]);
 

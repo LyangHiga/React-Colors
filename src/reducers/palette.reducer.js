@@ -10,7 +10,6 @@ const reducer = (state, action) => {
       );
       return found[0];
     default:
-      console.log('default');
       return state;
   }
 };

@@ -15,12 +15,13 @@ import red from '@material-ui/core/colors/red';
 import MiniPalette from './MiniPalette';
 import styles from './styles/PaletteListStyles';
 import useToggleState from './hooks/useToggleState';
-import { PalettesContext } from './context/palette.context';
+import { PalettesContext, DispatchContext } from './context/palette.context';
 
 function PaletteList(props) {
   const [openDeleteDialog, toggleDialog] = useToggleState(false);
   const [deletingId, setDeletingId] = useState();
-  const { palettes, dispatch } = useContext(PalettesContext);
+  const { palettes } = useContext(PalettesContext);
+  const { dispatch } = useContext(DispatchContext);
 
   const openDialog = id => {
     toggleDialog();
