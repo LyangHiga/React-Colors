@@ -13,6 +13,7 @@ function useLocalStorageReducer(key, defaultVal, reducer) {
   });
   useEffect(() => {
     window.localStorage.setItem(key, JSON.stringify(state));
+    document.title = 'React Color';
   }, [state]);
 
   return [state, dispatch];
